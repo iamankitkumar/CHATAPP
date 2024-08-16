@@ -1,0 +1,128 @@
+/* General chat box styling */
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 100%;
+    border: 1px solid #c6c6c6;
+    background-color: #f1f5ff;
+    overflow: hidden;
+}
+
+/* Header styling */
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 38px;
+    aspect-ratio: 1/1;
+}
+
+.user-name {
+    flex: 1;
+    font-weight: 500;
+    font-size: 20px;
+    color: #393939;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+
+.help-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Body styling */
+.chat-msg {
+    display: flex;
+    height: calc(100% - 70px);
+  
+    padding: 10px 15px;
+    overflow-y: scroll; /* Allows scrolling if content overflows */
+    flex-direction: column-reverse;
+}
+
+/* Input area styling */
+.chat-input {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-top: 1px solid #c6c6c6;
+    background-color: #fff;
+}
+
+.message-input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #c6c6c6;
+    margin-right: 10px;
+}
+
+.gallery-icon, .send-button {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.gallery-icon {
+    margin-left: auto; /* Pushes it to the right end */
+}
+
+.s-msg div img, .r-msg div img{
+    width: 27px;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+
+}
+
+.s-msg, .r-msg{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    gap: 5px;
+    padding: 0px 15px;
+}
+
+.r-msg{
+    flex-direction: row-reverse;
+    justify-content: start;
+}
+.msg{
+    color: white;
+    background-color: #077EFF;
+    padding: 8px;
+    max-width: 200px;
+    font-size: 11px;
+    font-weight: 300;
+    border-radius: 8px 8px 0px 8px;
+    margin-bottom: 13px;
+
+}
+.r-msg .msg{
+    border-radius: 8px 8px 8px 0px;
+}
+.s-msg div ,.r-msg div{
+    text-align: center;
+    font-size: 9px;
+}
+.msg-img{
+    max-width: 230px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
