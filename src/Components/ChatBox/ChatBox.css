@@ -80,6 +80,13 @@
     margin-left: 10px;
 }
 
+/* .gallery-icon, .send-button {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+} */
+
 .gallery-icon {
     margin-left: auto; /* Pushes it to the right end */
 }
