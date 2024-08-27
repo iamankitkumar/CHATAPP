@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ProfileUpdate.css'
+import assets from './../../assets/assets';
 const ProfileUpdate = () => {
+
+  const [image,setImage]=useState(false)
+  
+
+
   return (
    <div className="profile">
     <div className="profile-container">
-      form
+      <form>
+        <h3>Profile Details</h3>
+        <label htmlFor="avtar">
+          <input onChange={(e)=>setImage(e.target.files[0])} type="file" name="" id="avtar" accept='.png .jpg, .jpeg' hidden />
+          <img src={image? URL.createObjectURL(image):assets.avatar_icon} alt="" />
+          upload profile image
+        </label>
+        <input type="text" placeholder='your name' required />
+        <textarea placeholder='Write profile bio' required></textarea>
+        <button type="submit">Save</button>
+      </form>
+      <img  className="profile-pic" src={ image? URL.createObjectURL(image): assets.logo_icon} alt="" />
     </div>
    </div>
   )
