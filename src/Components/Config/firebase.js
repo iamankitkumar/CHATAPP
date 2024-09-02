@@ -1,8 +1,8 @@
-// Import the functions you need from the SDKs you need
+// Import the necessary functions from the Firebase SDK
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,33 +16,40 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-// createing aut in fire base 
+const signup = async (username, email, password) => {
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+    await setDoc(doc(db, "users", user.uid), {
+      id: user.uid,
+      username: username.toLowerCase(),
+      email,
+      name: "",
+      avatar: "",
+      bio: "Hey, there! I am using the chat app",
+      lastseen: Date.now()
+    });
+    await setDoc(doc(db, "chats", user.uid), {
+      chatData: []
+    });
+    toast.success("Account created successfully!");
+  } catch (error) {
+    console.error(error);
+    toast.error(error.code);
+  }
+};
 
-const auth=getAuth(app);
-const db=getFirestore(app);
+const loginUser = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    toast.success("Logged in successfully!");
+  } catch (error) {
+    console.error(error);
+    toast.error(error.code);
+  }
+};
 
-const signup=async(username,email,password)=>{
-    try{
-        const res=await createUserWithEmailAndPassword(auth,email,password);
-        const user=res.user;
-        await setDoc(doc(db,"users",user.uid),{
-            id:user.uid,
-            username:username.toLowerCase(),
-            email,
-            name:"",
-            avatar: "",
-            bio:"Hey, There i am using chat app",
-            lastseen:Date.now()
-
-        })
-        await setDoc(doc(db,"chats",user.uid),{
-            chatData:[]
-        })
-    }
-    catch(error){
-            console.error(error)
-            toast.error(error.code)
-    }
-}
-export {signup};
+export { signup, loginUser };
